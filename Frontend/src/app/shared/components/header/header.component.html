@@ -1,0 +1,152 @@
+{{ isAdmin }} - Role
+<ng-container *ngIf="!isAdmin; else viewAdmin">
+  <header class="ae-container-fluid ae-container-fluid--full rk-header">
+    <input type="checkbox" id="mobile-menu" class="rk-mobile-menu" />
+    <label for="mobile-menu">
+      <svg>
+        <use xlink:href="assets/img/symbols.svg#bar"></use>
+      </svg>
+      <svg>
+        <use xlink:href="assets/img/symbols.svg#bar"></use>
+      </svg>
+      <svg>
+        <use xlink:href="assets/img/symbols.svg#bar"></use>
+      </svg>
+    </label>
+    <div class="ae-container-fluid rk-topbar">
+      <h4 class="rk-logo">
+        <a href="index.html"><h3>TELL ME MORE | ESTADIAS UTXJ</h3></a>
+      </h4>
+      <nav class="rk-navigation">
+        <ul class="rk-menu">
+          <li class="rk-menu__item">
+            <a [routerLink]="'/'" class="rk-menu__link">Inicio</a>
+          </li>
+          <li class="rk-menu__item">
+            <a [routerLink]="'/admin'" class="rk-menu__link"
+              >Acerca de Nosotros</a
+            >
+          </li>
+          <li class="rk-menu__item">
+            <a href="blog.html" class="rk-menu__link">Foro</a>
+          </li>
+
+          <!--<li class="rk-menu__item"><a href="#0" class="rk-menu__link">Pages</a>
+            <nav class="rk-menu__sub">
+              <ul class="rk-container">
+                <li class="rk-menu__item"><a href="about.html" class="rk-menu__link">About</a></li>
+                <li class="rk-menu__item"><a href="documentation.html" class="rk-menu__link">Documentation</a></li>
+                <li class="rk-menu__item"><a href="design-styles.html" class="rk-menu__link">Design Styles</a></li>
+              </ul>
+            </nav>
+          </li>
+        
+         <li class="rk-menu__item">
+            <a href="contact.html" class="rk-menu__link">Contacto</a>
+          </li>
+        -->
+         
+         
+
+        </ul>
+        <form class="rk-search">
+          <input
+            type="text"
+            placeholder="Search"
+            id="urku-search"
+            class="rk-search-field"
+          />
+          <label for="urku-search">
+            <svg>
+              <use xlink:href="assets/img/symbols.svg#icon-search"></use>
+            </svg>
+          </label>
+          
+        </form>
+      </nav>
+      <button (click)="isAdmin = !isAdmin">cambiar</button>
+      <ul class="rk-menu">
+        <li class="navbar-right">
+        
+          <button 
+            [routerLink]="'/login'"
+            routerLinkActive="router-link-active"
+            type="button"
+            class="btn btn-outline-dark ">
+            <span class="glyphicon glyphicon-log-in"></span>Login</button>
+        </li>
+        &nbsp;
+        <li>
+          <button class="btn btn-outline-dark" type="button" (click)="onLogout()">Logout</button>
+        </li>
+      </ul> 
+    </div>
+  </header>
+</ng-container>
+
+<ng-template #viewAdmin>
+  <button type="button" class="btn btn-dark" (click)="onToggleSidenav()">
+    <a href="#"> <i class="fa fa-bars fa-lg"></i> Dashboard </a>
+  </button>
+  <div class="nav-side-menu">
+    <div class="brand">Menu Administrado</div>
+    <i
+      class="fa fa-bars fa-2x toggle-btn"
+      data-toggle="collapse"
+      data-target="#menu-content"
+    ></i>
+
+    <div class="menu-list">
+      <ul id="menu-content" class="menu-content collapse out">
+        <li>
+          <a href="#"> <i class="fa fa-dashboard fa-lg"></i> Dashboard </a>
+        </li>
+
+        <li
+          data-toggle="collapse"
+          data-target="#usuarios"
+          class="collapsed active"
+        >
+          <a href="#"
+            ><i class="fa fa-users fa-lg"></i> Usuarios
+            <span class="arrow"></span
+          ></a>
+        </li>
+        <ul class="sub-menu collapse" id="usuarios">
+          <li class="active"><a href="#">RFT-H1</a></li>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#empresas" class="collapsed">
+          <a href="#"
+            ><i class="fa fa-industry fa-lg"></i> Empresas
+            <span class="arrow"></span
+          ></a>
+        </li>
+        <ul class="sub-menu collapse" id="empresas">
+          <li>Regional</li>
+          <li>Nacional</li>
+          <li>Internacional</li>
+        </ul>
+
+        <li data-toggle="collapse" data-target="#ubicaciones" class="collapsed">
+          <a href="#"
+            ><i class="fa fa-map fa-lg"></i> Ubicaciones
+            <span class="arrow"></span
+          ></a>
+        </li>
+
+        <li>
+          <a href="#"> <i class="fa fa-comments fa-lg"></i> Experiencias </a>
+        </li>
+
+        <!--<li data-toggle="collapse" data-target="#new" class="collapsed">
+                    <a href="#"><i class="fa fa-car fa-lg"></i> Experiencias <span class="arrow"></span></a>
+                  </li>
+                  <ul class="sub-menu collapse" id="new">
+                    <li>Sensorkonfiguration</li>
+                    <li>Betriebsarten</li>
+                  </ul>-->
+      </ul>
+    </div>
+  </div>
+</ng-template>
