@@ -1,4 +1,4 @@
-{{ isAdmin }} - Role
+
 <ng-container *ngIf="!isAdmin; else viewAdmin">
   <header class="ae-container-fluid ae-container-fluid--full rk-header">
     <input type="checkbox" id="mobile-menu" class="rk-mobile-menu" />
@@ -23,13 +23,14 @@
             <a [routerLink]="'/'" class="rk-menu__link">Inicio</a>
           </li>
           <li class="rk-menu__item">
-            <a [routerLink]="'/admin'" class="rk-menu__link"
+            <a [routerLink]="'/about'" class="rk-menu__link"
               >Acerca de Nosotros</a
             >
           </li>
           <li class="rk-menu__item">
             <a href="blog.html" class="rk-menu__link">Foro</a>
           </li>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
           <!--<li class="rk-menu__item"><a href="#0" class="rk-menu__link">Pages</a>
             <nav class="rk-menu__sub">
@@ -49,7 +50,7 @@
          
 
         </ul>
-        <form class="rk-search">
+        <!--<form class="rk-search">
           <input
             type="text"
             placeholder="Search"
@@ -62,13 +63,14 @@
             </svg>
           </label>
           
-        </form>
+        </form>-->
       </nav>
       <button (click)="isAdmin = !isAdmin">cambiar</button>
       <ul class="rk-menu">
         <li class="navbar-right">
         
           <button 
+            *ngIf="!isLogged; else viewLogout"
             [routerLink]="'/login'"
             routerLinkActive="router-link-active"
             type="button"
@@ -76,13 +78,19 @@
             <span class="glyphicon glyphicon-log-in"></span>Login</button>
         </li>
         &nbsp;
-        <li>
-          <button class="btn btn-outline-dark" type="button" (click)="onLogout()">Logout</button>
-        </li>
+
       </ul> 
     </div>
   </header>
 </ng-container>
+<ng-template #viewLogout>
+  <ul class="rk-menu">
+    <li>
+      <button class="btn btn-outline-dark" type="button" (click)="onLogout()">Logout</button>
+    </li>
+  </ul>
+</ng-template>
+
 
 <ng-template #viewAdmin>
   <button type="button" class="btn btn-dark" (click)="onToggleSidenav()">

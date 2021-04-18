@@ -7,7 +7,15 @@ import { send } from "process";
 export class UserController {
     static getAll = async (req: Request, res: Response) => {
         const userRepository = getRepository(tb_usuarios);
-        const usuarios = await userRepository.find();
+        let usuarios;
+
+        try {
+            usuarios = await userRepository.find({ select: ['id', 'Email', 'Tipo']});
+        } catch (e) {
+            res.status(404).json({message: 'Salio mal lo que cambiaste'});
+        }
+
+        
 
         if (usuarios.length > 0) {
             res.send(usuarios);
